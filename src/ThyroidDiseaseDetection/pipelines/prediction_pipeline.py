@@ -31,70 +31,40 @@ class PredictPipeline:
     
     
     
-
 class CustomData:
-    def __init__(self,
-                 sex: str,
-                 on_thyroxine: str,
-                 query_on_thyroxine: str,
-                 on_antithyroid_medication: str,
-                 sick: str,
-                 pregnant: str,
-                 thyroid_surgery: str,
-                 I131_treatment: str,
-                 query_hypothyroid: str,
-                 query_hyperthyroid: str,
-                 lithium: str,
-                 goitre: str,
-                 tumor: str,
-                 hypopituitary: str,
-                 psych: str,
-                 TSH_measured: str,
-                 T3_measured: str,
-                 TT4_measured: str,
-                 T4U_measured: str,
-                 FTI_measured: str,
-                 TBG_measured: str,
-                 referral_source: str,
-                 age: float,
-                 TSH: float,
-                 T3: float,
-                 TT4: float,
-                 T4U: float,
-                 FTI: float):
-        
-        self.sex = sex
-        self.on_thyroxine = on_thyroxine
-        self.query_on_thyroxine = query_on_thyroxine
-        self.on_antithyroid_medication = on_antithyroid_medication
-        self.sick = sick
-        self.pregnant = pregnant
-        self.thyroid_surgery = thyroid_surgery
-        self.I131_treatment = I131_treatment
-        self.query_hypothyroid = query_hypothyroid
-        self.query_hyperthyroid = query_hyperthyroid
-        self.lithium = lithium
-        self.goitre = goitre
-        self.tumor = tumor
-        self.hypopituitary = hypopituitary
-        self.psych = psych
-        self.TSH_measured = TSH_measured
-        self.T3_measured = T3_measured
-        self.TT4_measured = TT4_measured
-        self.T4U_measured = T4U_measured
-        self.FTI_measured = FTI_measured
-        self.TBG_measured = TBG_measured
-        self.referral_source = referral_source
-        self.age = age
-        self.TSH = TSH
-        self.T3 = T3
-        self.TT4 = TT4
-        self.T4U = T4U
-        self.FTI = FTI
+    def __init__(self, data):
+        self.sex = data['sex']
+        self.on_thyroxine = data['on_thyroxine']
+        self.query_on_thyroxine = data['query_on_thyroxine']
+        self.on_antithyroid_medication = data['on_antithyroid_medication']
+        self.sick = data['sick']
+        self.pregnant = data['pregnant']
+        self.thyroid_surgery = data['thyroid_surgery']
+        self.I131_treatment = data['I131_treatment']
+        self.query_hypothyroid = data['query_hypothyroid']
+        self.query_hyperthyroid = data['query_hyperthyroid']
+        self.lithium = data['lithium']
+        self.goitre = data['goitre']
+        self.tumor = data['tumor']
+        self.hypopituitary = data['hypopituitary']
+        self.psych = data['psych']
+        self.TSH_measured = data['TSH_measured']
+        self.T3_measured = data['T3_measured']
+        self.TT4_measured = data['TT4_measured']
+        self.T4U_measured = data['T4U_measured']
+        self.FTI_measured = data['FTI_measured']
+        self.TBG_measured = data['TBG_measured']
+        self.referral_source = data['referral_source']
+        self.age = data['age']
+        self.TSH = data['TSH']
+        self.T3 = data['T3']
+        self.TT4 = data['TT4']
+        self.T4U = data['T4U']
+        self.FTI = data['FTI']
 
     def get_data_as_dataframe(self):
         try:
-            custom_data_input_dict = {
+            data = {
                 'sex': [self.sex],
                 'on_thyroxine': [self.on_thyroxine],
                 'query_on_thyroxine': [self.query_on_thyroxine],
@@ -124,9 +94,9 @@ class CustomData:
                 'T4U': [self.T4U],
                 'FTI': [self.FTI]
             }
-            df = pd.DataFrame(custom_data_input_dict)
+            df = pd.DataFrame(data)
             logging.info('Dataframe Gathered')
             return df
         except Exception as e:
-                logging.info('Exception Occured in prediction pipeline')
-                raise customexception(e,sys)
+            logging.info('Exception Occured in prediction pipeline')
+            raise customexception(e,sys)
