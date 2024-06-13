@@ -34,7 +34,7 @@ class ModelTrainer:
 
     def initate_model_training(self, train_array, test_array):
         try:
-            logging.info('Spitting dependent and indepedent variable')
+            logging.info('Splitting dependent and indepedent variable')
             X_train, y_train, X_test, y_test = (
                 train_array[:,:-1],
                 train_array[:,-1],
@@ -46,8 +46,8 @@ class ModelTrainer:
                 'max_depth': randint(3, 10),
                 'learning_rate': [0.001, 0.01, 0.1, 0.2, 0.3],
                 'subsample': [0.5, 0.7, 0.9, 1.0],
-                'max_features': ['auto', 'sqrt', 'log2'],
-                'loss': ['ls', 'lad', 'huber', 'quantile']
+                'max_features': ['sqrt', 'log2', None],
+                'loss': ['squared_error', 'absolute_error', 'huber', 'quantile']
             }
 
             # Initialize Gradient Boosting Regressor

@@ -5,7 +5,7 @@ import os
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OrdinalEncoder, StandardScaler
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from src.ThyroidDiseaseDetection.logger import logging
 from src.ThyroidDiseaseDetection.exception import customexception
 from dataclasses import dataclass
@@ -23,32 +23,12 @@ class DataTransformation:
     def get_data_transformation_object(self):
         try:
             logging.info('Data Transformation Initiated')
-            categorical_col = ['sex', 'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 'sick', 'pregnant', 'thyroid_surgery', 'I131_treatment', 'query_hypothyroid', 'query_hyperthyroid', 'lithium', 'goitre', 'tumor', 'hypopituitary', 'psych', 'TSH_measured', 'T3_measured', 'TT4_measured', 'T4U_measured', 'FTI_measured', 'TBG_measured', 'referral_source']
+            categorical_col = ['sex', 'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 'sick', 
+                               'pregnant', 'thyroid_surgery', 'I131_treatment', 'query_hypothyroid', 
+                               'query_hyperthyroid', 'lithium', 'goitre', 'tumor', 'hypopituitary', 'psych', 
+                               'TSH_measured', 'T3_measured', 'TT4_measured', 'T4U_measured', 'FTI_measured', 
+                               'TBG_measured', 'referral_source']
             numerical_col = ['age', 'TSH', 'T3', 'TT4', 'T4U', 'FTI']
-
-            sex = ['F', 'M']
-            on_thyroxine = ['t', 'f']
-            query_on_thyroxine = ['t', 'f']
-            on_antithyroid_medication = ['t', 'f']
-            sick = ['t', 'f']
-            pregnant = ['t', 'f']
-            thyroid_surgery = ['t', 'f']
-            I131_treatment = ['t', 'f']
-            query_hypothyroid = ['t', 'f']
-            query_hyperthyroid = ['t', 'f']
-            lithium = ['t', 'f']
-            goitre = ['t', 'f']
-            tumor = ['t', 'f']
-            hypopituitary = ['t', 'f']
-            psych = ['t', 'f']
-            TSH_measured = ['t', 'f']
-            T3_measured = ['t', 'f']
-            TT4_measured = ['t', 'f']
-            T4U_measured = ['t', 'f']
-            FTI_measured = ['t', 'f']
-            TBG_measured = ['f']
-            referral_source = ['SVHC', 'other', 'SVI', 'STMW', 'SVHD']
-            binary_class = ['N', 'P']
 
             logging.info('Pipeline initiated')
 
@@ -62,8 +42,7 @@ class DataTransformation:
             cat_pipeline = Pipeline(
                 steps=[
                     ('imputer', SimpleImputer(strategy='most_frequent')),
-                    ('ordinalencoder', OrdinalEncoder(categories=[sex, on_thyroxine, query_on_thyroxine, on_antithyroid_medication, sick, pregnant, thyroid_surgery, I131_treatment, query_hypothyroid, query_hyperthyroid, lithium, goitre, tumor, hypopituitary, psych, TSH_measured, T3_measured, TT4_measured, T4U_measured, FTI_measured, TBG_measured, referral_source])),
-                    ('scaler', StandardScaler())
+                    ('onehot', OneHotEncoder(handle_unknown='ignore'))  # Handle unknown categories
                 ]
             )
 
@@ -84,6 +63,7 @@ class DataTransformation:
         return df
 
     def replace_placeholders(self, df):
+        pd.set_option('future.no_silent_downcasting', True)
         df.replace('?', np.nan, inplace=True)
         return df
 
