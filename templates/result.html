@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f3f5;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #3f9e3f; /* Green shade for heading */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 2.5rem; /* Larger font size for impact */
+        }
+        p {
+            font-size: 1.8rem; /* Larger font size for the result */
+            margin-bottom: 30px;
+            color: #555; /* Darker color for readability */
+        }
+        .btn-primary {
+            font-size: 1.2rem;
+            padding: 12px 24px;
+            background-color: #3f9e3f; /* Green shade for button */
+            border-color: #3f9e3f; /* Matching border color */
+        }
+        .btn-primary:hover {
+            background-color: #368e36; /* Darker shade on hover */
+            border-color: #368e36;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p>The diagnosis for the patient is:</p>
+        <p class="display-4 mb-4">{{ prediction }}</p>
+        <a href="/" class="btn btn-primary">Predict Again</a>
+    </div>
+</body>
+</html>

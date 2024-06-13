@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Disease Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #4CAF50; /* Green */
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .header-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+        }
+        .left-section {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .right-section {
+            flex: 1;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        .btn-primary {
+            background-color: #4CAF50; /* Green */
+            border-color: #4CAF50;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+        .footer {
+            background-color: #4CAF50; /* Green */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .thyroid-info h2 {
+            color: #4CAF50; /* Green */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">HealthCare</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <div class="left-section">
+            <img src="https://img.freepik.com/free-photo/male-medical-figure-with-sore-throat-coronavirus-cells_1048-12003.jpg?t=st=1718307385~exp=1718310985~hmac=9506af979ee6b5549b554b457f44a9cd03112b73958fc6de4774e867b1e4e8bb&w=740" alt="Thyroid Healthcare">
+        </div>
+        <div class="right-section">
+            <h1 class="text-center">Thyroid Disease Detection</h1>
+            <form id="prediction-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile-number">Mobile Number:</label>
+                    <input type="tel" class="form-control" id="mobile-number" name="mobile-number" required pattern="[0-9]{10}">
+                </div>
+                <a href="/predict" id="proceed-button" class="btn btn-primary btn-block proceed-button">Proceed</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="container thyroid-info mt-4">
+        <h2>About the Thyroid Gland</h2>
+        <p>The thyroid gland is a butterfly-shaped organ located at the base of your neck. It produces hormones that regulate your body's metabolic rate, heart and digestive function, muscle control, brain development, mood, and bone maintenance. Proper thyroid function is crucial for overall health and well-being.</p>
+        <p>Common thyroid disorders include:</p>
+        <ul>
+            <li><strong>Hypothyroidism:</strong> A condition where the thyroid does not produce enough hormones, leading to symptoms like fatigue, weight gain, and depression.</li>
+            <li><strong>Hyperthyroidism:</strong> A condition where the thyroid produces too much hormone, causing symptoms like weight loss, rapid heartbeat, and nervousness.</li>
+            <li><strong>Thyroid Nodules:</strong> Lumps in the thyroid gland that can be benign or, in some cases, cancerous.</li>
+            <li><strong>Goiter:</strong> An abnormal enlargement of the thyroid gland.</li>
+        </ul>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 HealthCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#proceed-button').click(function(e) {
+                e.preventDefault(); // Prevent the default link behavior
+
+                // Serialize the form data
+                var formData = $('#prediction-form').serialize();
+
+                // Redirect to "/predict" with the form data as a query string
+                window.location.href = '/predict?' + formData;
+            });
+        });
+    </script>
+</body>
+</html>

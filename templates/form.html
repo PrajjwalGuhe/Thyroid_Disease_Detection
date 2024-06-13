@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Disease Detection Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4CAF50; /* Green */
+        }
+        label {
+            font-weight: 500;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #4CAF50; /* Green */
+            border-color: #4CAF50;
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2rem;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thyroid Disease Detection Form</h1>
+        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+            <div class="form-group">
+                <label for="sex">Sex</label>
+                <select class="form-control" id="sex" name="sex" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="on_thyroxine">On Thyroxine</label>
+                <select class="form-control" id="on_thyroxine" name="on_thyroxine" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="query_on_thyroxine">Query on Thyroxine</label>
+                <select class="form-control" id="query_on_thyroxine" name="query_on_thyroxine" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="on_antithyroid_medication">On Antithyroid Medication</label>
+                <select class="form-control" id="on_antithyroid_medication" name="on_antithyroid_medication" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sick">Sick</label>
+                <select class="form-control" id="sick" name="sick" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pregnant">Pregnant</label>
+                <select class="form-control" id="pregnant" name="pregnant" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="thyroid_surgery">Thyroid Surgery</label>
+                <select class="form-control" id="thyroid_surgery" name="thyroid_surgery" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="I131_treatment">I131 Treatment</label>
+                <select class="form-control" id="I131_treatment" name="I131_treatment" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="query_hypothyroid">Query Hypothyroid</label>
+                <select class="form-control" id="query_hypothyroid" name="query_hypothyroid" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="query_hyperthyroid">Query Hyperthyroid</label>
+                <select class="form-control" id="query_hyperthyroid" name="query_hyperthyroid" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="lithium">Lithium</label>
+                <select class="form-control" id="lithium" name="lithium" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="goitre">Goitre</label>
+                <select class="form-control" id="goitre" name="goitre" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tumor">Tumor</label>
+                <select class="form-control" id="tumor" name="tumor" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hypopituitary">Hypopituitary</label>
+                <select class="form-control" id="hypopituitary" name="hypopituitary" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="psych">Psych</label>
+                <select class="form-control" id="psych" name="psych" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TSH_measured">TSH Measured</label>
+                <select class="form-control" id="TSH_measured" name="TSH_measured" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="T3_measured">T3 Measured</label>
+                <select class="form-control" id="T3_measured" name="T3_measured" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TT4_measured">TT4 Measured</label>
+                <select class="form-control" id="TT4_measured" name="TT4_measured" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="T4U_measured">T4U Measured</label>
+                <select class="form-control" id="T4U_measured" name="T4U_measured" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="FTI_measured">FTI Measured</label>
+                <select class="form-control" id="FTI_measured" name="FTI_measured" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TBG_measured">TBG Measured</label>
+                <select class="form-control" id="TBG_measured" name="TBG_measured" required>
+                    <option value="">Select</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="referral_source">Referral Source</label>
+                <input type="text" class="form-control" id="referral_source" name="referral_source" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" name="age" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="TSH">TSH</label>
+                <input type="number" class="form-control" id="TSH" name="TSH" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="T3">T3</label>
+                <input type="number" class="form-control" id="T3" name="T3" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="TT4">TT4</label>
+                <input type="number" class="form-control" id="TT4" name="TT4" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="T4U">T4U</label>
+                <input type="number" class="form-control" id="T4U" name="T4U" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="FTI">FTI</label>
+                <input type="number" class="form-control" id="FTI" name="FTI" step="any" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
