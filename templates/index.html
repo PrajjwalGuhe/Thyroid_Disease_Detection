@@ -86,16 +86,16 @@
         </div>
         <div class="right-section">
             <h1 class="text-center">Thyroid Disease Detection</h1>
-            <form id="prediction-form">
+            <form id="prediction-form" action="/predict" method="GET">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="mobile-number">Mobile Number:</label>
-                    <input type="tel" class="form-control" id="mobile-number" name="mobile-number" required pattern="[0-9]{10}">
+                    <input type="tel" class="form-control" id="mobile-number" name="number" required pattern="[0-9]{10}">
                 </div>
-                <a href="/predict" id="proceed-button" class="btn btn-primary btn-block proceed-button">Proceed</a>
+                <button type="submit" class="btn btn-primary btn-block">Proceed</button>
             </form>
         </div>
     </div>
@@ -121,18 +121,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#proceed-button').click(function(e) {
-                e.preventDefault(); // Prevent the default link behavior
-
-                // Serialize the form data
-                var formData = $('#prediction-form').serialize();
-
-                // Redirect to "/predict" with the form data as a query string
-                window.location.href = '/predict?' + formData;
-            });
-        });
-    </script>
 </body>
 </html>
