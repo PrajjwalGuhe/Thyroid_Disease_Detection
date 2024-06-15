@@ -138,4 +138,4 @@ def predict_datapoint():
         return render_template('result.html', name=name, number=number, prediction=prediction_result, score=prediction[0])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0",port=8080, debug=True)
